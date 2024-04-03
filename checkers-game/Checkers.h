@@ -11,9 +11,9 @@ private:
 public:
   Checkers(); // default constructor
   void printBoard(); //prints board
-  void movePeice(); //moves checkers peice and checks if captured and if valid
-  bool check_winner(int); //check number of captured peices for winner
-  bool checkBoard(int); //checks for winner if game is quit
-  void makeKing(int, int); //makes peice a king
+  void movePiece(int i, int j); //moves checkers peice and checks if captured and if valid
+  bool checkWinner(int i, int j, char Board); //check number of captured peices for winner
+  bool checkBoard(char Board); //checks for winner if game is quit
+  void makeKing(int i, int j, char Board); //makes peice a king
 };
 #endif
