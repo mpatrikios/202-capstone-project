@@ -1,3 +1,5 @@
+//Checkers game class header file
+//Lab 8 Capstone - 202 - Mia Patrikios and Wyatt Knepp
 #ifndef CHECKERS_H
 #define CHECKERS_H
 
@@ -10,10 +12,13 @@ private:
 
 public:
   Checkers(); // default constructor
-  void printBoard(); //prints board
-  void movePiece(int i, int j); //moves checkers peice and checks if captured and if valid
-  bool checkWinner(int i, int j, char Board); //check number of captured peices for winner
-  bool checkBoard(char Board); //checks for winner if game is quit
-  void makeKing(int i, int j, char Board); //makes peice a king
+  void printBoard(); // print the board
+  void movePiece(int i, int j, int direction); // move a piece
+  bool checkWinner(); // check if there is a winner
+  bool checkBoard(char Board); // check the board if 'Q' is inputted
+  void makeKing(int i, int j, char Board); // make a piece a king
+  bool isValidMove(int i, int j, int direction); // check if a move is valid
+  bool isValidJump(int i, int j, int direction); // check if a jump is valid
+
 };
 #endif
