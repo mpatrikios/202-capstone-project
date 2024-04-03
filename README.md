@@ -28,3 +28,29 @@ bool isValidMove(int i, int j, int direction)- checks if the move is on the boar
 bool isValidJump(int i, int j, int direction)- checks if jump is valid (ie. on the board, not jumping their own peice, only moving backwards if king)
 
 
+PROS AND CONS TO USING OOP
+pros:
+- easy to call functions within each other (ie. checking if valid within the capture peice and move peice functions)
+- cleaner and easy to understand by separating out the functions
+
+cons:
+- for a simple board game, using OOP could be harder than hard coding the game in main
+- (not many, OOP is lit)
+
+USEFUL DATA STRUCTURES:
+- 2-D array is the best option because we are not adding or deleting elements (ie. changing the size/memory allocation), simply switching the char at certain coordinates
+- a map could also be used becuase it is essentially a 2d array
+
+TEST CASES/RUBRIC:
+- when a peice is captured, is the space replaced with ' ' +1
+- when a peice reaches end of the opposite board, is the character capatilized +1
+- prompt for a double/triple jump if it is a possibility +1
+- correct winner when 'Q' is inputed and when game ends +1
+- board is printed with correct formating +1
+- board updates correctly after every move +1
+- checks if inputed move is valid, reprompts player if invalid move +1
+- only Kings can move backwards +1
+  
+
+
+
