@@ -14,6 +14,7 @@ public:
   Checkers(); // default constructor
   void printBoard(); // print the board
   void movePiece(int i, int j, int direction); // move a piece
+  void jump(int i, int j, int direction); // jump a piece
   bool checkWinner(); // check if there is a winner
   bool checkBoard(char Board); // check the board if 'Q' is inputted
   void makeKing(int i, int j, char Board); // make a piece a king

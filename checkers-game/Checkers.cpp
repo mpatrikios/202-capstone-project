@@ -62,6 +62,10 @@ void Checkers::printBoard(){
   void Checkers::movePiece(int i, int j, int direction){
 
   } 
+
+  void Checkers::jump(int i, int j, int direction){
+
+  }
   
   bool Checkers::checkWinner(){
 
