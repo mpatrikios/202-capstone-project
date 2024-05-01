@@ -15,19 +15,19 @@ Checkers::Checkers(){
             Board[i][j] = ' ';
             }else{
             if(i < 3){
-                Board[i][j] = 'X';
+                Board[i][j] = 'x';
             }else if(i > 4){
-                Board[i][j] = 'O';
+                Board[i][j] = 'o';
             }else{
                 Board[i][j] = ' ';
             }}
         }
         else{
             if(j % 2 == 0){
-            if(i < 3){
-                Board[i][j] = 'X';
-            }else if(i > 4){
-                Board[i][j] = 'O';
+                if(i < 3){
+                    Board[i][j] = 'x';
+                } else if(i > 4){
+                Board[i][j] = 'o';
             }else{
                 Board[i][j] = ' ';
             }}else{
@@ -75,37 +75,44 @@ void Checkers::printBoard(){
 
 
   void Checkers::jump(int i, int j, int direction){
+    if (counter%2 == 0){
+        increment = 1;
+        jumpIncrement = 2;
+    }else {
+        increment = -1;
+        jumpIncrement = -2;
+    }
     switch(direction){
         case 5: //JFR
         if (Board[i][j] == 'X') {
             score1++;
         }else score2++;
-        Board[i+2][j+2] = Board[i][j];
-        Board[i+1][j+1] = ' ';
+        Board[i+jumpIncrement][j+jumpIncrement] = Board[i][j];
+        Board[i+increment][j+increment] = ' ';
         Board[i][j] = ' ';
         break;
         case 6: //JFL
         if (Board[i][j] == 'X') {
             score1++;
         }else score2++;
-        Board[i+2][j-2] = Board[i][j];
-        Board[i+1][j-1] = ' ';
+        Board[i+jumpIncrement][j-jumpIncrement] = Board[i][j];
+        Board[i+increment][j-increment] = ' ';
         Board[i][j] = ' ';
         break;
         case 7: //JBL
         if (Board[i][j] == 'X') {
             score1++;
         }else score2++;
-        Board[i-2][j-2] = Board[i][j];
-        Board[i-1][j-1] = ' ';  
+        Board[i-jumpIncrement][j-jumpIncrement] = Board[i][j];
+        Board[i-increment][j-increment] = ' ';  
         Board[i][j] = ' ';
         break;
         case 8: //JBR
         if (Board[i][j] == 'X') {
             score1++;
         }else score2++;
-        Board[i-2][j+2] = Board[i][j];
-        Board[i-1][j+1] = ' ';
+        Board[i-jumpIncrement][j+jumpIncrement] = Board[i][j];
+        Board[i-increment][j+increment] = ' ';
         Board[i][j] = ' ';
         break;
     }
@@ -127,28 +134,31 @@ void Checkers::printBoard(){
   } 
 
   void Checkers::makeKing(int i, int j, char Board){
-
+    
   } 
 
 bool Checkers::isValidMove(int i, int j, int direction){
+    if (counter%2 == 0){
+        increment = 1;
+    }else increment = -1;
     switch(direction){
         case 1: //FR
-        if (Board[i+1][j+1] == ' ') return true;
+        if (Board[i+increment][j+increment] == ' ') return true;
         break;
         case 2: //FL
-        if (Board[i+1][j-1] == ' ') return true;
+        if (Board[i+increment][j-increment] == ' ') return true;
         break;
         case 3: //BL
-        if (Board[i][j] != 'K') {
+        if (Board[i][j] != 'X' || 'O') {
             cout << "Not a King. Cannot move backwards.";
             return false;
-        }if (Board[i-1][j-1] == ' ') return true;
+        }if (Board[i-increment][j-increment] == ' ') return true;
         break;
         case 4: //BR
-        if (Board[i][j] != 'K') {
+        if (Board[i][j] != 'X' || 'O') {
             cout << "Not a King. Cannot move backwards.";
             return false;
-        }if (Board[i-1][j+1] == ' ') return true;
+        }if (Board[i-increment][j+increment] == ' ') return true;
         break;
         default:
         cout << "Invalid move. Try again.";
@@ -158,28 +168,45 @@ bool Checkers::isValidMove(int i, int j, int direction){
   }
 
 bool Checkers::isValidJump(int i, int j, int direction){
+    //can't jump their own peice and 
+    if (counter%2 == 0){
+        increment = 1;
+        jumpIncrement = 2;
+
+    }else{
+        increment = -1;
+        jumpIncrement = -2;
+    } 
+
     switch(direction){
-       case 5: //JFR
-        if (Board[i+1][j+1] == 'X' && Board[i+2][j+2] == ' ') return true;
+        case 5: //JFR
+        if (Board[i+increment][j+increment] != ' ' && Board[i+2][j+2] == ' ') return true;
         break;
         case 6: //JFL
-        if (Board[i+1][j-1] == 'X' && Board[i+2][j-2] == ' ') return true;
+        if (Board[i+increment][j-increment] != ' ' && Board[i+2][j-2] == ' ') return true;
         break;
         case 7: //JBL
         if (Board[i][j] != 'K') {
             cout << "Not a King. Cannot move backwards.";
             return false;
-        }if (Board[i-1][j-1] == 'X' && Board[i-2][j-2] == ' ') return true;
+        }if (Board[i-increment][j-increment] != ' ' && Board[i-2][j-2] == ' ') return true;
         break;
         case 8: //JBR
         if (Board[i][j] != 'K') {
             cout << "Not a King. Cannot move backwards.";
             return false;
-        }if (Board[i-1][j+1] == 'X' && Board[i-2][j+2] == ' ') return true;
+        }if (Board[i-increment][j+increment] == 'X' && Board[i-2][j+2] == ' ') return true;
         break;
         default:
         cout << "Invalid jump. Try again.";
         return false;
         break;
     }
+}
+int Checkers::getCounter(){
+    return counter;
+}
+
+void Checkers::incrementCounter(){
+    counter++;
 }

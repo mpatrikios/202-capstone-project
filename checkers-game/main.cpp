@@ -10,7 +10,6 @@ using namespace std;
 int main() {
     int i, j, direction;
     string inputDirection;
-    int counter = 0;
     Checkers game;
     game.printBoard(); //create Checkers object and print the board
     cout << "Welcome to Checkers! The direction you would like to move corresponds to the following:" << endl; 
@@ -24,7 +23,7 @@ int main() {
     cout << "JBR - jump back right" << endl;
     cout << "Player 1 will be X's and Player 2 will be O's. Enter 'Q' to quit the game." << endl;
     while (game.checkWinner() == false) { //if no winner, continue game
-       if (counter % 2 == 0) { //even counter means player 1's turn
+       if (game.getCounter() % 2 == 0) { //even counter means player 1's turn
              cout << "Player 1's turn. Which peice would you like to move[row column direction]: " << endl;
              if (cin >> i && i == 'Q') { //if input is Q, check winner of game and print message
               game.checkBoard();
@@ -57,7 +56,7 @@ int main() {
                   game.checkWinner();
                   //check for double jump and ask if they want to jump again
                 } else game.movePiece(i, j, direction); //if the move is not a valid jump, move the piece
-                counter++;
+                game.incrementCounter();
               }
        } else {
            cout << "Player 2's turn. Which peice would you like to move[row column direction]: " << endl;
@@ -93,7 +92,7 @@ int main() {
                   game.checkWinner();
                   //check for double jump and ask if they want to jump again
                 } else game.movePiece(i, j, direction); //if the move is not a valid jump, move the piece
-                counter++;
+                game.incrementCounter();
               }
        }
     }
