@@ -27,7 +27,7 @@ int main() {
        if (counter % 2 == 0) { //even counter means player 1's turn
              cout << "Player 1's turn. Which peice would you like to move[row column direction]: " << endl;
              if (cin >> i && i == 'Q') { //if input is Q, check winner of game and print message
-              game.checkWinner();
+              game.checkBoard();
                cout << "Thanks for playing!" << endl;
                break;
              }
@@ -54,6 +54,7 @@ int main() {
               } else {
                if (game.isValidJump(i, j, direction)) {//check if the move is a valid jump, if it is check if they want to double/triple jump
                   game.jump(i, j, direction);
+                  game.checkWinner();
                   //check for double jump and ask if they want to jump again
                 } else game.movePiece(i, j, direction); //if the move is not a valid jump, move the piece
                 counter++;
@@ -61,7 +62,7 @@ int main() {
        } else {
            cout << "Player 2's turn. Which peice would you like to move[row column direction]: " << endl;
            if (cin >> i && i == 'Q') { //if input is Q, check winner of game and print message
-               game.checkWinner();
+               game.checkBoard();
                cout << "Thanks for playing!" << endl;
                break;
            }
@@ -82,11 +83,14 @@ int main() {
                 direction = 7;
               } else if (inputDirection == "JBR") {
                direction = 8;
-              } if (game.isValidMove(i, j, direction) == false) { //check valid move
-                cout << "Invalid move. Try again." << endl;
+              } if (direction < 5) {
+               if (game.isValidMove(i, j, direction)){
+                game.movePiece(i, j, direction);
+               } else cout << "Invalid move. Try again." << endl;
               } else {
                if (game.isValidJump(i, j, direction)) {//check if the move is a valid jump, if it is check if they want to double/triple jump
                   game.jump(i, j, direction);
+                  game.checkWinner();
                   //check for double jump and ask if they want to jump again
                 } else game.movePiece(i, j, direction); //if the move is not a valid jump, move the piece
                 counter++;

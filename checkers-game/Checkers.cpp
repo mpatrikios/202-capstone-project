@@ -54,14 +54,17 @@ void Checkers::printBoard(){
   void Checkers::movePiece(int i, int j, int direction){
     switch(direction){
         case 1: //FR
-        
+        Board[i+1][j+1] = Board[i][j];
+        Board[i][j] = ' ';
         case 2: //FL
+        Board[i+1][j-1] = Board[i][j];
+        Board[i][j] = ' ';
         case 3: //BL
+        Board[i-1][j-1] = Board[i][j];
+        Board[i][j] = ' ';
         case 4: //BR
-        case 5: //JFR
-        case 6: //JFL
-        case 7: //JBL
-        case 8: //JBR
+        Board[i-1][j+1] = Board[i][j];
+        Board[i][j] = ' ';
     }
 
     }
@@ -69,56 +72,96 @@ void Checkers::printBoard(){
 
   void Checkers::jump(int i, int j, int direction){
     switch(direction){
-        case 1: //FR
-
-        case 2: //FL
-        case 3: //BL
-        case 4: //BR
         case 5: //JFR
+        if (Board[i][j] == 'X') {
+            score1++;
+        }else score2++;
+        Board[i+2][j+2] = Board[i][j];
+        Board[i+1][j+1] = ' ';
+        Board[i][j] = ' ';
         case 6: //JFL
+        if (Board[i][j] == 'X') {
+            score1++;
+        }else score2++;
+        Board[i+2][j-2] = Board[i][j];
+        Board[i+1][j-1] = ' ';
+        Board[i][j] = ' ';
         case 7: //JBL
+        if (Board[i][j] == 'X') {
+            score1++;
+        }else score2++;
+        Board[i-2][j-2] = Board[i][j];
+        Board[i-1][j-1] = ' ';  
+        Board[i][j] = ' ';
         case 8: //JBR
+        if (Board[i][j] == 'X') {
+            score1++;
+        }else score2++;
+        Board[i-2][j+2] = Board[i][j];
+        Board[i-1][j+1] = ' ';
+        Board[i][j] = ' ';
     }
   }
   
   bool Checkers::checkWinner(){
-
+    if (score1 == 12) {
+        cout << "Player 1 wins!" << endl;
+        return true;
+    }else if (score2 == 12) {
+        cout << "Player 2 wins!" << endl;
+        return true;
+    }else return false;
+    
   } 
   
-  bool Checkers::checkBoard(char Board){
-
+  bool Checkers::checkBoard(){
+    score1 > score2 ? cout << "Player 1 wins!" : cout << "Player 2 wins!";
   } 
 
   void Checkers::makeKing(int i, int j, char Board){
 
   } 
 
-  bool Checkers::isValidMove(int i, int j, int direction){
+bool Checkers::isValidMove(int i, int j, int direction){
     switch(direction){
         case 1: //FR
-
+        if (Board[i+1][j+1] == ' ') return true;
         case 2: //FL
+        if (Board[i+1][j-1] == ' ') return true;
         case 3: //BL
+        if (Board[i][j] != 'K') {
+            cout << "Not a King. Cannot move backwards.";
+            return false;
+        }if (Board[i-1][j-1] == ' ') return true;
         case 4: //BR
-        case 5: //JFR
-        case 6: //JFL
-        case 7: //JBL
-        case 8: //JBR
-    }
-
+        if (Board[i][j] != 'K') {
+            cout << "Not a King. Cannot move backwards.";
+            return false;
+        }if (Board[i-1][j+1] == ' ') return true;
+        default:
+        cout << "Invalid move. Try again.";
+        return false;
   } 
+  }
 
-  bool Checkers::isValidJump(int i, int j, int direction){
+bool Checkers::isValidJump(int i, int j, int direction){
     switch(direction){
-        case 1: //FR
-
-        case 2: //FL
-        case 3: //BL
-        case 4: //BR
-        case 5: //JFR
+       case 5: //JFR
+        if (Board[i+1][j+1] == 'X' && Board[i+2][j+2] == ' ') return true;
         case 6: //JFL
+        if (Board[i+1][j-1] == 'X' && Board[i+2][j-2] == ' ') return true;
         case 7: //JBL
+        if (Board[i][j] != 'K') {
+            cout << "Not a King. Cannot move backwards.";
+            return false;
+        }if (Board[i-1][j-1] == 'X' && Board[i-2][j-2] == ' ') return true;
         case 8: //JBR
+        if (Board[i][j] != 'K') {
+            cout << "Not a King. Cannot move backwards.";
+            return false;
+        }if (Board[i-1][j+1] == 'X' && Board[i-2][j+2] == ' ') return true;
+        default:
+        cout << "Invalid jump. Try again.";
+        return false;
     }
-
-  } 
+}
