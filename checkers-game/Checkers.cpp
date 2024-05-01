@@ -13,32 +13,24 @@ Checkers::Checkers(){
         if(i % 2 == 0){
             if(j % 2 == 0){
             Board[i][j] = ' ';
-            }
-            else{
+            }else{
             if(i < 3){
                 Board[i][j] = 'X';
-            }
-            else if(i > 4){
+            }else if(i > 4){
                 Board[i][j] = 'O';
-            }
-            else{
+            }else{
                 Board[i][j] = ' ';
-            }
-            }
+            }}
         }
         else{
             if(j % 2 == 0){
             if(i < 3){
                 Board[i][j] = 'X';
-            }
-            else if(i > 4){
+            }else if(i > 4){
                 Board[i][j] = 'O';
-            }
-            else{
+            }else{
                 Board[i][j] = ' ';
-            }
-            }
-            else{
+            }}else{
             Board[i][j] = ' ';
             }
         }
@@ -60,11 +52,33 @@ void Checkers::printBoard(){
 } 
 
   void Checkers::movePiece(int i, int j, int direction){
+    switch(direction){
+        case 1: //FR
+        
+        case 2: //FL
+        case 3: //BL
+        case 4: //BR
+        case 5: //JFR
+        case 6: //JFL
+        case 7: //JBL
+        case 8: //JBR
+    }
 
-  } 
+    }
+
 
   void Checkers::jump(int i, int j, int direction){
+    switch(direction){
+        case 1: //FR
 
+        case 2: //FL
+        case 3: //BL
+        case 4: //BR
+        case 5: //JFR
+        case 6: //JFL
+        case 7: //JBL
+        case 8: //JBR
+    }
   }
   
   bool Checkers::checkWinner(){
@@ -80,9 +94,31 @@ void Checkers::printBoard(){
   } 
 
   bool Checkers::isValidMove(int i, int j, int direction){
+    switch(direction){
+        case 1: //FR
+
+        case 2: //FL
+        case 3: //BL
+        case 4: //BR
+        case 5: //JFR
+        case 6: //JFL
+        case 7: //JBL
+        case 8: //JBR
+    }
 
   } 
 
   bool Checkers::isValidJump(int i, int j, int direction){
+    switch(direction){
+        case 1: //FR
+
+        case 2: //FL
+        case 3: //BL
+        case 4: //BR
+        case 5: //JFR
+        case 6: //JFL
+        case 7: //JBL
+        case 8: //JBR
+    }
 
   } 
