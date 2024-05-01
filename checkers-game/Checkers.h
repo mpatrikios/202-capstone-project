@@ -12,6 +12,7 @@ private:
   int counter = 0; //counter for turns
   int increment = 1;
   int jumpIncrement = 2;
+  
 
 public:
   Checkers(); // default constructor
