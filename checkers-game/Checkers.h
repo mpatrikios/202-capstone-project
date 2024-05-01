@@ -18,6 +18,7 @@ public:
   Checkers(); // default constructor
   int getCounter();
   void printBoard(); // print the board
+  bool validateInput(int i, int j, int direction);
   void movePiece(int i, int j, int direction); // move a piece
   void jump(int i, int j, int direction); // jump a piece
   bool checkWinner(); // check if there is a winner

@@ -1,7 +1,7 @@
-#include "checkers.h"
+#include "Checkers.h"
 #include <iostream>
 #include <string>
-#include <vector>
+#include <vector> 
 #include <algorithm>
 
 using namespace std;
@@ -293,6 +293,27 @@ bool Checkers::isValidJump(int i, int j, int direction)
         break;
     }
 }
+
+// Validate user input for piece coordinates and direction
+bool Checkers::validateInput(int i, int j, int direction) {
+    // Check if piece coordinates are within the board boundaries
+    if (i < 0 || i >= 8 || j < 0 || j >= 8) {
+        cout << "Invalid piece coordinates. Please enter coordinates within the range [0, 7]." << endl;
+        return false;
+    }
+
+    // Check if direction is within the valid range (1 to 8)
+    if (direction < 1 || direction > 8) {
+        cout << "Invalid direction. Please enter a direction between 1 and 8." << endl;
+        return false;
+    }
+
+    // Additional validation if needed for specific game rules
+    // For example, check if the piece at (i, j) belongs to the current player
+
+    return true; // Input is valid
+}
+
 int Checkers::getCounter()
 {
     return counter;
