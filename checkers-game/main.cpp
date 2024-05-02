@@ -24,18 +24,16 @@ int main() {
     cout << "JBR - jump back right" << endl;
     cout << "Player 1 will be X's and Player 2 will be O's. Enter 'Q' to quit the game." << endl;
     while (!game.checkWinner()) { //if no winner, continue game
+    game.printBoard();
     cout << "Player " << (game.getCounter() % 2 == 0 ? 1 : 2) << "'s turn. Which piece would you like to move [row column direction] ('Q' to quit): ";
-    cin >> quitOption;
-    if (quitOption == 'Q') { // Check for quit option
+        
+        // Read in i, j, and inputDirection
+        cin >> i >> j >> inputDirection;
+        cout << i << j << inputDirection << endl;
+        if (i == 81) { // Check for quit option
         game.checkBoard();
         cout << "Thanks for playing!" << endl;
         break;
-    }
-
-    cin >> i >> j >> inputDirection; //get input from user, i is row, j is column
-    if (!game.validateInput(i, j, direction)) {
-        // If input is not valid, skip the rest of the loop iteration
-        continue;
     }
     // Convert input direction to integer
     if (inputDirection == "FR") {
@@ -54,12 +52,15 @@ int main() {
         direction = 7;
     } else if (inputDirection == "JBR") {
         direction = 8;
-    } 
-
-    if (!game.validateInput(i, j, direction)) {
-        // If input is not valid, skip the rest of the loop iteration
-        continue;
-    }
+    } else {
+            cout << "Invalid direction. Try again." << endl;
+            break;
+        }
+        
+     if (!game.validateInput(i, j, direction)) {
+            break;
+        }
+    
     // Validate move or jump
     if (direction < 5) {
         if (game.isValidMove(i, j, direction)){

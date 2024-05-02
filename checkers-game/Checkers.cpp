@@ -65,46 +65,61 @@ Checkers::Checkers()
 }
 void Checkers::printBoard()
 {
-    cout << "  0 1 2 3 4 5 6 7" << endl;
-    for (int i = 0; i < 8; i++)
-    {
-        cout << i << " ";
-        for (int j = 0; j < 8; j++)
-        {
-            cout << Board[i][j] << " ";
+    cout << "   0   1   2   3   4   5   6   7" << endl; // Print column indices
+
+    for (int i = 0; i < 8; i++) {
+        cout << i << " "; // Print row index
+        for (int j = 0; j < 8; j++) {
+            if (j > 0) {
+                cout << "|"; // Print vertical line before each cell except the first one
+            }
+            cout << " " << Board[i][j] << " "; // Print cell value
         }
         cout << endl;
+
+        if (i < 7) {
+            // Print horizontal line after each row except the last one
+            cout << "  ";
+            for (int j = 0; j < 8; j++) {
+                if (j > 0) {
+                    cout << "+"; // Print intersection symbol between cells
+                }
+                cout << "---"; // Print horizontal line
+            }
+            cout << endl;
+        }
     }
 }
 
+
 void Checkers::movePiece(int i, int j, int direction)
 {
+    char peice = Board[i][j];
+    Board[i][j] = ' ';
     if (counter % 2 == 0)  increment = 1;
     else  increment = -1;
         
     switch (direction)
     {
     case 1: // FR
-        Board[i + increment][j + increment] = Board[i][j];
-        Board[i][j] = ' ';
+        Board[i + increment][j + increment] = peice;
         break;
     case 2: // FL
-        Board[i + increment][j - increment] = Board[i][j];
-        Board[i][j] = ' ';
+        Board[i + increment][j - increment] = peice;
         break;
     case 3: // BL
-        Board[i - increment][j - increment] = Board[i][j];
-        Board[i][j] = ' ';
+        Board[i - increment][j - increment] = peice;
         break;
     case 4: // BR
-        Board[i - increment][j + increment] = Board[i][j];
-        Board[i][j] = ' ';
+        Board[i - increment][j + increment] = peice;
         break;
     }
 }
 
 void Checkers::jump(int i, int j, int direction)
 {
+    char peice = Board[i][j];
+    Board[i][j] = ' ';
     if (counter % 2 == 0)
     {
         increment = 1;
@@ -118,57 +133,24 @@ void Checkers::jump(int i, int j, int direction)
     switch (direction)
     {
     case 5: // JFR
-        if (Board[i][j] == 'X')
-        {
-            score1++;
-        }
-        else
-        {
-            score2++;
-        }
-        Board[i + jumpIncrement][j + jumpIncrement] = Board[i][j];
+        Board[i + jumpIncrement][j + jumpIncrement] = peice;
         Board[i + increment][j + increment] = ' ';
-        Board[i][j] = ' ';
         break;
     case 6: // JFL
-        if (Board[i][j] == 'X')
-        {
-            score1++;
-        }
-        else
-        {
-            score2++;
-        }
-        Board[i + jumpIncrement][j - jumpIncrement] = Board[i][j];
+        Board[i + jumpIncrement][j - jumpIncrement] = peice;
         Board[i + increment][j - increment] = ' ';
-        Board[i][j] = ' ';
         break;
     case 7: // JBL
-        if (Board[i][j] == 'X')
-        {
-            score1++;
-        }
-        else
-        {
-            score2++;
-        }
-
-        Board[i - jumpIncrement][j - jumpIncrement] = Board[i][j];
+        Board[i - jumpIncrement][j - jumpIncrement] = peice;
         Board[i - increment][j - increment] = ' ';
-        Board[i][j] = ' ';
         break;
     case 8: // JBR
-        if (Board[i][j] == 'X')
-        {
-            score1++;
-        }
-        else
-            score2++;
-        Board[i - jumpIncrement][j + jumpIncrement] = Board[i][j];
+        Board[i - jumpIncrement][j + jumpIncrement] = peice;
         Board[i - increment][j + increment] = ' ';
-        Board[i][j] = ' ';
         break;
     }
+     if (Board[i][j] == 'X')  score1++;
+        else score2++;
 }
 
 bool Checkers::checkWinner()
