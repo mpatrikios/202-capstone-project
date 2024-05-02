@@ -136,6 +136,7 @@ int main() {
             //If move is valid then move piece
             if (game.isValidMove(i, j, direction)) { 
                 game.movePiece(i, j, direction);
+                game.Board[i][j] = game.makeKing(i, game.Board[i][j]); //check if piece is a king
             } 
             
             //Else restart loop
@@ -151,6 +152,7 @@ int main() {
             //check if it is a valid jump
             if (game.isValidJump(i, j, direction)){ 
                 game.jump(i, j, direction);
+                game.Board[i][j] = game.makeKing(i, game.Board[i][j]); //check if piece is a king
             } 
 
             //Else restart loop
@@ -168,10 +170,8 @@ int main() {
             //check which jumps are available and adds them to list    
             for (int d = 4; d < loopEnd; d++){ 
                 //If jump is valid then add to vector
-                cout << "I: " << i << " J: " << j << " D: " << d << "\n";
                 if(game.isValidJump(i, j, d)){
                     jumpAgainOptions.push_back(d); //add possible jumps to a vector
-                    cout << "Jump added: " << d << "\n";
                 }
             }
             
@@ -220,6 +220,7 @@ int main() {
                     cin >> inputDirection;
                     direction = convertString(inputDirection, game.getCounter()); 
                     game.jump(i, j, direction); //jump 
+                    game.Board[i][j] = game.makeKing(i, game.Board[i][j]); //check if piece is a king
                 } 
 
                 //options for O to jump again
@@ -251,6 +252,7 @@ int main() {
                     cin >> inputDirection;
                     direction = convertString(inputDirection, game.getCounter()); 
                     game.jump(i, j, direction); //jump 
+                    game.Board[i][j] = game.makeKing(i, game.Board[i][j]); //check if piece is a king
                 } 
                 
                 else if (jumpAgain == 'N' || jumpAgain == 'n'){ //if they don't want to jump again

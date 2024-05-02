@@ -8,9 +8,9 @@ class Checkers{
 private:
   int score1; //score for player 1
   int score2; //score for player 2
-  int counter=0; //counter for turns
-  int increment=1;
-  int jumpIncrement=2;
+  int counter; //counter for turns
+  int increment;
+  int jumpIncrement;
   
 
 public:
@@ -19,11 +19,11 @@ public:
   int getCounter();
   void printBoard(); // print the board
   bool validateInput(int i, int j, int direction);
-  void movePiece(int i, int j, int direction); // move a piece
+  void movePiece(int &i, int &j, int direction); // move a piece
   void jump(int &i, int &j, int direction); // jump a piece
   bool checkWinner(); // check if there is a winner
   bool checkBoard(); // check the winner if 'Q' is inputted
-  void makeKing(int i, int j, char Board); // make a piece a king
+  char makeKing(int i, char peice); // make a piece a king
   bool isValidMove(int i, int j, int direction); // check if a move is valid
   bool isValidJump(int i, int j, int direction); // check if a jump is valid
   void incrementCounter();

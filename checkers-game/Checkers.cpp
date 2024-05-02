@@ -8,6 +8,7 @@ using namespace std;
 
 Checkers::Checkers()
 {
+    counter = 0;
     // initialize the board
     for (int i = 0; i < 8; i++)
     {
@@ -92,7 +93,7 @@ void Checkers::printBoard()
 }
 
 
-void Checkers::movePiece(int i, int j, int direction)
+void Checkers::movePiece(int &i, int &j, int direction)
 {
     char peice = Board[i][j];
     Board[i][j] = ' ';
@@ -103,15 +104,23 @@ void Checkers::movePiece(int i, int j, int direction)
     {
     case 0: // FR
         Board[i + increment][j + increment] = peice;
+        i += increment;
+        j += increment;
         break;
     case 1: // FL
         Board[i + increment][j - increment] = peice;
+        i += increment;
+        j -= increment;
         break;
     case 2: // BL
         Board[i - increment][j - increment] = peice;
+         i -= increment;
+         j -= increment;
         break;
     case 3: // BR
         Board[i - increment][j + increment] = peice;
+         i -= increment;
+         j += increment;
         break;
     }
 }
@@ -189,8 +198,22 @@ bool Checkers::checkWinner()
     }return false;
     
 }
-void Checkers::makeKing(int i, int j, char Board)
+char Checkers::makeKing(int i, char peice)
 {
+    char newPeice;
+    if (peice == 'x' && i == 7)
+    {
+        newPeice = 'X';
+    }
+    else if (peice == 'o' && i == 0)
+    {
+       newPeice = 'O';
+    }
+    else
+    {
+        newPeice = peice;
+    }
+    return newPeice;
 }
 
 bool Checkers::isValidMove(int i, int j, int direction)
