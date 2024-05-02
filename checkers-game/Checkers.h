@@ -26,6 +26,7 @@ public:
   void makeKing(int i, int j, char Board); // make a piece a king
   bool isValidMove(int i, int j, int direction); // check if a move is valid
   bool isValidJump(int i, int j, int direction); // check if a jump is valid
+  bool jumpAgain(int i, int j); // check if a piece can jump again
   void incrementCounter();
 };
 #endif

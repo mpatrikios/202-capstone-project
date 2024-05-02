@@ -101,16 +101,16 @@ void Checkers::movePiece(int i, int j, int direction)
         
     switch (direction)
     {
-    case 1: // FR
+    case 0: // FR
         Board[i + increment][j + increment] = peice;
         break;
-    case 2: // FL
+    case 1: // FL
         Board[i + increment][j - increment] = peice;
         break;
-    case 3: // BL
+    case 2: // BL
         Board[i - increment][j - increment] = peice;
         break;
-    case 4: // BR
+    case 3: // BR
         Board[i - increment][j + increment] = peice;
         break;
     }
@@ -132,19 +132,19 @@ void Checkers::jump(int i, int j, int direction)
     }
     switch (direction)
     {
-    case 5: // JFR
+    case 4: // JFR
         Board[i + jumpIncrement][j + jumpIncrement] = peice;
         Board[i + increment][j + increment] = ' ';
         break;
-    case 6: // JFL
+    case 5: // JFL
         Board[i + jumpIncrement][j - jumpIncrement] = peice;
         Board[i + increment][j - increment] = ' ';
         break;
-    case 7: // JBL
+    case 8: // JBL
         Board[i - jumpIncrement][j - jumpIncrement] = peice;
         Board[i - increment][j - increment] = ' ';
         break;
-    case 8: // JBR
+    case 7: // JBR
         Board[i - jumpIncrement][j + jumpIncrement] = peice;
         Board[i - increment][j + increment] = ' ';
         break;
@@ -201,15 +201,15 @@ bool Checkers::isValidMove(int i, int j, int direction)
     }
     switch (direction)
     {
-    case 1: // FR
+    case 0: // FR
         if (Board[i + increment][j + increment] == ' ')
             return true;
         break;
-    case 2: // FL
+    case 1: // FL
         if (Board[i + increment][j - increment] == ' ')
             return true;
         break;
-    case 3: // BL
+    case 2: // BL
         if (Board[i][j] != 'X' || 'O')
         {
             cout << "Not a King. Cannot move backwards.";
@@ -218,7 +218,7 @@ bool Checkers::isValidMove(int i, int j, int direction)
         if (Board[i - increment][j - increment] == ' ')
             return true;
         break;
-    case 4: // BR
+    case 3: // BR
         if (Board[i][j] != 'X' || 'O')
         {
             cout << "Not a King. Cannot move backwards.";
@@ -257,15 +257,15 @@ bool Checkers::isValidJump(int i, int j, int direction)
 
     switch (direction)
     {
-    case 5: // JFR 
+    case 4: // JFR 
         if ((Board[i + increment][j + increment] == enemy1 ||Board[i + increment][j + increment] == enemy2) && Board[i + 2][j + 2] == ' ')
             return true;
         break;
-    case 6: // JFL
+    case 5: // JFL
         if ((Board[i + increment][j - increment] == enemy1 ||Board[i + increment][j + increment] == enemy2) && Board[i + 2][j - 2] == ' ')
             return true;
         break;
-    case 7: // JBL
+    case 6: // JBL
         if (Board[i][j] != 'K')
         {
             cout << "Not a King. Cannot move backwards.";
@@ -274,7 +274,7 @@ bool Checkers::isValidJump(int i, int j, int direction)
         if ((Board[i - increment][j - increment] == enemy1 || Board[i - increment][j - increment] == enemy2 )&& Board[i - 2][j - 2] == ' ')
             return true;
         break;
-    case 8: // JBR
+    case 7: // JBR
         if (Board[i][j] != 'K')
         {
             cout << "Not a King. Cannot move backwards.";
@@ -299,8 +299,8 @@ bool Checkers::validateInput(int i, int j, int direction) {
     }
 
     // Check if direction is within the valid range (1 to 8)
-    if (direction < 1 || direction > 8) {
-        cout << "Invalid direction. Please enter a direction between 1 and 8." << endl;
+    if (direction <  0 || direction > 8) {
+        cout << "Invalid direction. Please enter a direction given above" << endl;
         return false;
     }
 
@@ -308,6 +308,16 @@ bool Checkers::validateInput(int i, int j, int direction) {
     // For example, check if the piece at (i, j) belongs to the current player
 
     return true; // Input is valid
+}
+
+bool Checkers::jumpAgain(int i, int j)
+{
+    if (Board[i][j] == 'X' || Board[i][j] == 'O')
+    {
+        if (Board[i + 2][j + 2] == ' ' || Board[i + 2][j - 2] == ' ' || Board[i - 2][j - 2] == ' ' || Board[i - 2][j + 2] == ' ')
+            return true;
+    }
+    return false;
 }
 
 int Checkers::getCounter()
