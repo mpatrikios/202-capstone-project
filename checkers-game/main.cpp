@@ -23,18 +23,21 @@ int main() {
     cout << "JBL - jump back left" << endl;
     cout << "JBR - jump back right" << endl;
     cout << "Player 1 will be X's and Player 2 will be O's. Enter 'Q' to quit the game." << endl;
-    while (!game.checkWinner()) { //if no winner, continue game
-    game.printBoard();
-    cout << "Player " << (game.getCounter() % 2 == 0 ? 1 : 2) << "'s turn. Which piece would you like to move [row column direction] ('Q' to quit): ";
+    while (!game.checkWinner()) {
+         int i = -1;
+        game.printBoard();
+        cout << "Player " << (game.getCounter() % 2 == 0 ? 1 : 2) << "'s turn. Which piece would you like to move [row column direction] ('Q' to quit): ";
         
-        // Read in i, j, and inputDirection
-        cin >> i >> j >> inputDirection;
-        cout << i << j << inputDirection << endl;
-        if (i == 81) { // Check for quit option
+    // Read in i, j, and inputDirection
+    cin >> i >> j >> inputDirection;
+    cout << i << j << inputDirection << endl;
+
+    if (i == -1) { // Check for quit option
         game.checkBoard();
         cout << "Thanks for playing!" << endl;
         break;
     }
+
     // Convert input direction to integer
     if (inputDirection == "FR") {
         direction = 1;
@@ -53,20 +56,21 @@ int main() {
     } else if (inputDirection == "JBR") {
         direction = 8;
     } else {
-            cout << "Invalid direction. Try again." << endl;
-            break;
-        }
+        cout << "Invalid direction. Try again." << endl;
+        continue; // Go back to the start of the loop to prompt for valid input
+    }
         
-     if (!game.validateInput(i, j, direction)) {
-            break;
-        }
+    if (!game.validateInput(i, j, direction)) {
+        continue; // Go back to the start of the loop to prompt for valid input
+    }
     
     // Validate move or jump
     if (direction < 5) {
-        if (game.isValidMove(i, j, direction)){
+        if (game.isValidMove(i, j, direction)) {
             game.movePiece(i, j, direction);
         } else {
             cout << "Invalid move. Try again." << endl;
+            continue; // Go back to the start of the loop to prompt for valid input
         }
     } else {
         if (game.isValidJump(i, j, direction)) {
@@ -74,17 +78,17 @@ int main() {
             // Check for double jump and ask if they want to jump again
         } else {
             cout << "Invalid jump. Try again." << endl;
+            continue; // Go back to the start of the loop to prompt for valid input
         }
     }
     game.incrementCounter();
-    if (game.checkWinner()){
+
+    if (game.checkWinner()) {
         game.checkBoard();
         cout << "Player " << (game.getCounter() % 2 == 0 ? 1 : 2) << " wins!" << endl;
-        cout << "Thanks for playing!" << endl;
+        cout << " Thanks for playing!" << endl;
         break;
     }
 }
 return 0;
 }
-
-

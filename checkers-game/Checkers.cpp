@@ -153,39 +153,52 @@ void Checkers::jump(int i, int j, int direction)
         else score2++;
 }
 
+
+bool Checkers::checkBoard()
+{
+    if (score1 == score2){
+        cout << "Tie Game!";
+    }else score1 > score2 ? cout << "Player 1 wins!" : cout << "Player 2 wins!";
+}
+
 bool Checkers::checkWinner()
 {
-    if (score1 == 12)
+    if (score1 == 12 && score2 == 12)
     {
-        cout << "Player 1 wins!" << endl;
+        cout << "Tie Game!";
+        return true;
+    }
+    else if (score1 == 12)
+    {
+        cout << "Player 1 wins!";
         return true;
     }
     else if (score2 == 12)
     {
-        cout << "Player 2 wins!" << endl;
+        cout << "Player 2 wins!";
         return true;
-    }
-    else
-        return false;
+    }return false;
+    
 }
-
-bool Checkers::checkBoard()
-{
-    score1 > score2 ? cout << "Player 1 wins!" : cout << "Player 2 wins!";
-}
-
 void Checkers::makeKing(int i, int j, char Board)
 {
 }
 
 bool Checkers::isValidMove(int i, int j, int direction)
 {
+    char enemy1, enemy2;
     if (counter % 2 == 0)
     {
+        enemy1 = 'o';
+        enemy2 = 'O';
         increment = 1;
     }
     else
+    {
+        enemy1 = 'x';
+        enemy2 = 'X';
         increment = -1;
+    }
     switch (direction)
     {
     case 1: // FR
@@ -219,6 +232,7 @@ bool Checkers::isValidMove(int i, int j, int direction)
         return false;
         break;
     }
+ return false;
 }
 
 bool Checkers::isValidJump(int i, int j, int direction)
