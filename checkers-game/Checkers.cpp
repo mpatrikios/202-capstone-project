@@ -116,7 +116,7 @@ void Checkers::movePiece(int i, int j, int direction)
     }
 }
 
-void Checkers::jump(int i, int j, int direction)
+void Checkers::jump(int &i, int &j, int direction)
 {
     char peice = Board[i][j];
     Board[i][j] = ' ';
@@ -130,27 +130,36 @@ void Checkers::jump(int i, int j, int direction)
         increment = -1;
         jumpIncrement = -2;
     }
+    if (Board[i][j] == 'X')  score1++;
+        else score2++;
     switch (direction)
     {
     case 4: // JFR
         Board[i + jumpIncrement][j + jumpIncrement] = peice;
         Board[i + increment][j + increment] = ' ';
+        i += jumpIncrement;
+        j += jumpIncrement;
         break;
     case 5: // JFL
         Board[i + jumpIncrement][j - jumpIncrement] = peice;
         Board[i + increment][j - increment] = ' ';
+        i += jumpIncrement;
+        j -= jumpIncrement;
         break;
     case 8: // JBL
         Board[i - jumpIncrement][j - jumpIncrement] = peice;
         Board[i - increment][j - increment] = ' ';
+        i -= jumpIncrement;
+        j -= jumpIncrement;
         break;
     case 7: // JBR
         Board[i - jumpIncrement][j + jumpIncrement] = peice;
         Board[i - increment][j + increment] = ' ';
+        i -= jumpIncrement;
+        j += jumpIncrement;
         break;
     }
-     if (Board[i][j] == 'X')  score1++;
-        else score2++;
+     
 }
 
 
@@ -310,15 +319,7 @@ bool Checkers::validateInput(int i, int j, int direction) {
     return true; // Input is valid
 }
 
-bool Checkers::jumpAgain(int i, int j)
-{
-    if (Board[i][j] == 'X' || Board[i][j] == 'O')
-    {
-        if (Board[i + 2][j + 2] == ' ' || Board[i + 2][j - 2] == ' ' || Board[i - 2][j - 2] == ' ' || Board[i - 2][j + 2] == ' ')
-            return true;
-    }
-    return false;
-}
+
 
 int Checkers::getCounter()
 {
@@ -329,3 +330,4 @@ void Checkers::incrementCounter()
 {
     counter++;
 }
+
