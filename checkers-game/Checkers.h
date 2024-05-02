@@ -8,9 +8,9 @@ class Checkers{
 private:
   int score1; //score for player 1
   int score2; //score for player 2
-  int counter = 0; //counter for turns
-  int increment = 1;
-  int jumpIncrement = 2;
+  int counter=0; //counter for turns
+  int increment=1;
+  int jumpIncrement=2;
   
 
 public:
