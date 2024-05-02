@@ -31,7 +31,12 @@ int main() {
         cout << "Thanks for playing!" << endl;
         break;
     }
+
     cin >> i >> j >> inputDirection; //get input from user, i is row, j is column
+    if (!game.validateInput(i, j, direction)) {
+        // If input is not valid, skip the rest of the loop iteration
+        continue;
+    }
     // Convert input direction to integer
     if (inputDirection == "FR") {
         direction = 1;
@@ -71,7 +76,12 @@ int main() {
         }
     }
     game.incrementCounter();
-    game.checkWinner();
+    if (game.checkWinner()){
+        game.checkBoard();
+        cout << "Player " << (game.getCounter() % 2 == 0 ? 1 : 2) << " wins!" << endl;
+        cout << "Thanks for playing!" << endl;
+        break;
+    }
 }
 return 0;
 }
