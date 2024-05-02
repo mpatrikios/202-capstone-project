@@ -6,7 +6,6 @@
 class Checkers{
   
 private:
-  char Board[8][8]; // 8x8 board
   int score1; //score for player 1
   int score2; //score for player 2
   int counter = 0; //counter for turns
@@ -15,6 +14,7 @@ private:
   
 
 public:
+  char Board[8][8]; // 8x8 board
   Checkers(); // default constructor
   int getCounter();
   void printBoard(); // print the board

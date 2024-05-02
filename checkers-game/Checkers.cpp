@@ -275,7 +275,7 @@ bool Checkers::isValidJump(int i, int j, int direction)
             return true;
         break;
     case 6: // JBL
-        if (Board[i][j] != 'K')
+        if (Board[i][j] != 'X' || Board[i][j] != 'O')
         {
             cout << "Not a King. Cannot move backwards.";
             return false;
@@ -284,7 +284,7 @@ bool Checkers::isValidJump(int i, int j, int direction)
             return true;
         break;
     case 7: // JBR
-        if (Board[i][j] != 'K')
+        if (Board[i][j] != 'X' || Board[i][j] != 'O')
         {
             cout << "Not a King. Cannot move backwards.";
             return false;

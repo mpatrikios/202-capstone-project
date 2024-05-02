@@ -7,60 +7,83 @@
 
 using namespace std;
 
+//Converts given string into a number that represents the direction (ex: FR to 0)
 int convertString(string inputDirection, int counter) {
-    int direction;
-   if (counter % 2 == 0) { //different directions for X
+    int direction = -1;
+
+    if (counter % 2 == 0) { //different directions for X
         if (inputDirection == "FR") {
-        direction = 0;
-    } else if (inputDirection == "FL") {
-        direction = 1;
-    } else if (inputDirection == "BL") {
-        direction = 2;
-    } else if (inputDirection == "BR") {
-        direction = 3;
-    } else if (inputDirection == "JFR") {
-        direction = 4;
-    } else if (inputDirection == "JFL") {
-        direction = 5;
-    } else if (inputDirection == "JBL") {
-        direction = 6;
-    } else if (inputDirection == "JBR") {
-        direction = 7;
-    } else {
-       direction = -1;
+            direction = 0;
+        } 
+        else if (inputDirection == "FL") {
+            direction = 1;
+        } 
+        else if (inputDirection == "BL") {
+            direction = 2;
+        } 
+        else if (inputDirection == "BR") {
+            direction = 3;
+        } 
+        else if (inputDirection == "JFR") {
+            direction = 4;
+        } 
+        else if (inputDirection == "JFL") {
+            direction = 5;
+        } 
+        else if (inputDirection == "JBL") {
+            direction = 6;
+        } 
+        else if (inputDirection == "JBR") {
+            direction = 7;
+        }     
+        else {
+            direction = -1;
+        }
     }
-     }
+    
+    //Different directions for O
     else {
-    if (inputDirection == "FR") {
-        direction = 1;
-    } else if (inputDirection == "FL") {
-        direction = 0;
-    } else if (inputDirection == "BL") {
-        direction = 3;
-    } else if (inputDirection == "BR") {
-        direction = 2;
-    } else if (inputDirection == "JFR") {
-        direction = 5;
-    } else if (inputDirection == "JFL") {
-        direction = 4;
-    } else if (inputDirection == "JBL") {
-        direction = 7;
-    } else if (inputDirection == "JBR") {
-        direction = 6;
-    } else {
-        direction = -1;
-    }
+        if (inputDirection == "FR") {
+            direction = 1;
+        } 
+        else if (inputDirection == "FL") {
+            direction = 0;
+        } 
+        else if (inputDirection == "BL") {
+            direction = 3;
+        } 
+        else if (inputDirection == "BR") {
+            direction = 2;
+        } 
+        else if (inputDirection == "JFR") {
+            direction = 5;
+        } 
+        else if (inputDirection == "JFL") {
+            direction = 4;
+        } 
+        else if (inputDirection == "JBL") {
+            direction = 7;
+        } 
+        else if (inputDirection == "JBR") {
+            direction = 6;
+        } 
+        else {
+            direction = -1;
+        }
     }
     return direction;
 }
 
 
 int main() {
-    int i, j, direction;
-    string inputDirection;
-    Checkers game;
-    vector <int> jumpAgainOptions;
-    game.printBoard(); //create Checkers object and print the board
+    int i, j, direction; //i: row, j: column, direction: direction of move
+    string inputDirection; //User input
+    Checkers game; //Create Checkers object
+    vector <int> jumpAgainOptions; //Available jump options after jump
+    
+    game.printBoard(); //print the board after setup
+
+    //Explain UI
     cout << "Welcome to Checkers! The direction you would like to move corresponds to the following:" << endl; 
     cout << "FR - front right" << endl;
     cout << "FL - front left" << endl;
@@ -71,8 +94,12 @@ int main() {
     cout << "JBL - jump back left" << endl;
     cout << "JBR - jump back right" << endl;
     cout << "Player 1 will be X's and Player 2 will be O's. Enter 'Q' to quit the game." << endl;
+    
+    //Game loop
     while (!game.checkWinner()) {
-        int i = -1;
+        i = -1; //If i is -1 at the end, the user wants to quit
+        
+        //Print the board and prompt the user for input
         cout << endl;
         game.printBoard();
         cout << endl;
@@ -89,128 +116,117 @@ int main() {
             break;
         }
 
-    // Convert input direction to integer
+        // Convert input direction to integer    
+        direction = convertString(inputDirection, game.getCounter());
     
-    direction = convertString(inputDirection, game.getCounter());
-    if (direction < 0 || direction > 8) {
-        cout << "Invalid direction. Try again." << endl;
-        continue; // Go back to the start of the loop to prompt for valid input
-    }
-    // if (game.getCounter() % 2 == 0) { //different directions for X
-    //     if (inputDirection == "FR") {
-    //     direction = 0;
-    // } else if (inputDirection == "FL") {
-    //     direction = 1;
-    // } else if (inputDirection == "BL") {
-    //     direction = 2;
-    // } else if (inputDirection == "BR") {
-    //     direction = 3;
-    // } else if (inputDirection == "JFR") {
-    //     direction = 4;
-    // } else if (inputDirection == "JFL") {
-    //     direction = 5;
-    // } else if (inputDirection == "JBL") {
-    //     direction = 6;
-    // } else if (inputDirection == "JBR") {
-    //     direction = 7;
-    // } else {
-    //     cout << "Invalid direction. Try again." << endl;
-    //     continue; // Go back to the start of the loop to prompt for valid input
-    // }
-    //  }
-    // else {
-    // if (inputDirection == "FR") {
-    //     direction = 1;
-    // } else if (inputDirection == "FL") {
-    //     direction = 0;
-    // } else if (inputDirection == "BL") {
-    //     direction = 3;
-    // } else if (inputDirection == "BR") {
-    //     direction = 2;
-    // } else if (inputDirection == "JFR") {
-    //     direction = 5;
-    // } else if (inputDirection == "JFL") {
-    //     direction = 4;
-    // } else if (inputDirection == "JBL") {
-    //     direction = 7;
-    // } else if (inputDirection == "JBR") {
-    //     direction = 6;
-    // } else {
-    //     cout << "Invalid direction. Try again." << endl;
-    //     continue; // Go back to the start of the loop to prompt for valid input
-    // }
-    // }
-        
-    if (!game.validateInput(i, j, direction)) {
-        continue; // Go back to the start of the loop to prompt for valid input
-    }
-    
-    // Validate move or jump
-    if (direction < 4) { //not jumping so just check if it is a valid move
-        if (game.isValidMove(i, j, direction)) { 
-            game.movePiece(i, j, direction);
-        } else {
-            cout << "Invalid move. Try again." << endl;
-            continue; // Go back to the start of the loop to prompt for valid input
-        }
-    } 
-    else { //else it is a jump so check for valid jump
-        if(game.isValidJump(i, j, direction)){ //check if it is a valid jump
-            game.jump(i, j, direction);
-        } else {
-            cout << "Invalid jump. Try again." << endl;
+        //Checks if direction will segfault
+        if (direction < 0 || direction > 8) {
+            cout << "Invalid direction. Try again." << endl;
             continue; // Go back to the start of the loop to prompt for valid input
         }
 
+        // Checks if input provided was valid, else restarts loop    
+        if (!game.validateInput(i, j, direction)) {
+            continue; // Go back to the start of the loop to prompt for valid input
+        }
+    
+        // Validate move or jump
+        //not jumping so just check if it is a valid move
+        if (direction < 4) { 
+
+            //If move is valid then move piece
+            if (game.isValidMove(i, j, direction)) { 
+                game.movePiece(i, j, direction);
+            } 
+            
+            //Else restart loop
+            else {
+                cout << "Invalid move. Try again." << endl;
+                continue; // Go back to the start of the loop to prompt for valid input
+            }
+        } 
         
-        for(int d = 4; d < 8; d++){ //check if there are any other jumps available    
-            if(game.isValidJump(i, j, d)){
-                jumpAgainOptions.push_back(d); //add possible jumps to a vector
+        //else it is a jump so check for valid jump
+        else { 
+
+            //check if it is a valid jump
+            if (game.isValidJump(i, j, direction)){ 
+                game.jump(i, j, direction);
+            } 
+
+            //Else restart loop
+            else {
+                cout << "Invalid jump. Try again." << endl;
+                continue; // Go back to the start of the loop to prompt for valid input
+            }
+
+            //Check if the piece is a king, if so, add backwards jumps checks       
+            int loopEnd = 6;
+            if(game.Board[i][j] == 'X' || game.Board[i][j] == 'O'){
+                loopEnd = 8;
+            }
+
+            //check which jumps are available and adds them to list    
+            for (int d = 4; d < loopEnd; d++){ 
+                //If jump is valid then add to vector
+                cout << "I: " << i << " J: " << j << " D: " << d << "\n";
+                if(game.isValidJump(i, j, d)){
+                    jumpAgainOptions.push_back(d); //add possible jumps to a vector
+                    cout << "Jump added: " << d << "\n";
+                }
+            }
+            
+
+            //if there are options and X is playing
+            if (jumpAgainOptions.size() != 0 && game.getCounter()%2 == 0){    
+                game.printBoard(); //print the board 
+                cout << "Would you like to jump again? (Y/N): ";
+                char jumpAgain = 'a';
+            
+                //Take input from user
+                cin >> jumpAgain;
+                
+                //If input is invalid, ask again
+                while (jumpAgain != 'Y' && jumpAgain != 'y' && jumpAgain != 'N' && jumpAgain != 'n') {
+                    cout << "Invalid input - please enter 'Y' or 'N'" << endl;
+                    cin >> jumpAgain;
+                }
+
+                //if they want to jump again list their options
+                if(jumpAgain == 'Y' || jumpAgain == 'y'){ 
+                    cout << "Which direction would you like to jump? Your options are: ";
+            
+                    for(int d = 0; d < jumpAgainOptions.size(); d++){        
+                        if (jumpAgainOptions[d] == 4) {
+                            cout << "JFR ";
+                        } 
+                
+                        else if (jumpAgainOptions[d] == 5) {
+                            cout << "JFL ";
+                        } 
+                
+                        else if (jumpAgainOptions[d] == 6) {
+                            cout << "JBL ";
+                        } 
+                
+                        else if (jumpAgainOptions[d] == 7) {
+                            cout << "JBR ";
+                        }
+                    } 
+                
+                    cout << endl << "Enter your choice: "; //ask for their choice
+
+                    //Take input and convert to direction
+                    cin >> inputDirection;
+                    direction = convertString(inputDirection, game.getCounter()); 
+                    game.jump(i, j, direction); //jump 
+                } 
+                
+                else if (jumpAgain == 'N' || jumpAgain == 'n'){ //if they don't want to jump again
+                    game.incrementCounter(); //increment the counter
+                } 
             }
         }
-        
-        if (jumpAgainOptions.size() != 0 && game.getCounter()%2 == 0){ //if there are options and X is playing
-            
-            cout << "Would you like to jump again? (Y/N): ";
-            char jumpAgain = 'a';
-        
-            
-            do {
-                cin >> jumpAgain;
-               } while (jumpAgain != 'Y' && jumpAgain != 'y' && jumpAgain != 'N' && jumpAgain != 'n');
-
-            if(jumpAgain == 'Y' || jumpAgain == 'y'){ //if they want to jump again list their options
-                cout << "Which direction would you like to jump? Your options are: ";
-        
-                for(int d = 0; d < jumpAgainOptions.size(); d++){        
-                    if (jumpAgainOptions[d] == 4) {
-                        cout << "JFR ";
-                    } 
-            
-                    else if (jumpAgainOptions[d] == 5) {
-                        cout << "JFL ";
-                    } 
-            
-                    else if (jumpAgainOptions[d] == 6) {
-                         cout << "JBL ";
-                    } 
-            
-                    else if (jumpAgainOptions[d] == 7) {
-                         cout << "JBR ";
-                    }
-                } 
-            
-                cout << endl << "Enter your choice: "; //ask for their choice
-                cin >> inputDirection;
-                direction = convertString(inputDirection, game.getCounter()); //convert their choice to a direction
-                game.jump(i, j, direction); //jump 
-            } 
-            
-            else if (jumpAgain == 'N' || jumpAgain == 'n'){ //if they don't want to jump again
-                game.incrementCounter(); //increment the counter
-            } 
-        }
-    }
         game.incrementCounter();
 
         if (game.checkWinner()) {
