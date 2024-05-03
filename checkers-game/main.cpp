@@ -229,19 +229,19 @@ int main() {
                     cout << "Which direction would you like to jump? Your options are: ";
             
                     for(int d = 0; d < jumpAgainOptions.size(); d++){        
-                        if (jumpAgainOptions[d] == 4) {
+                        if (jumpAgainOptions[d] == 5) {
                             cout << "JFR ";
                         } 
                 
-                        else if (jumpAgainOptions[d] == 5) {
+                        else if (jumpAgainOptions[d] == 4) {
                             cout << "JFL ";
                         } 
                 
-                        else if (jumpAgainOptions[d] == 6) {
+                        else if (jumpAgainOptions[d] == 7) {
                             cout << "JBL ";
                         } 
                 
-                        else if (jumpAgainOptions[d] == 7) {
+                        else if (jumpAgainOptions[d] == 6) {
                             cout << "JBR ";
                         }
                     } 

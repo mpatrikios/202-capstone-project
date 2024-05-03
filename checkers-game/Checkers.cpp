@@ -290,11 +290,11 @@ bool Checkers::isValidJump(int i, int j, int direction)
     switch (direction)
     {
     case 4: // JFR 
-        if ((Board[i + increment][j + increment] == enemy1 ||Board[i + increment][j + increment] == enemy2) && Board[i + 2][j + 2] == ' ')
+        if ((Board[i + increment][j + increment] == enemy1 ||Board[i + increment][j + increment] == enemy2) && Board[i + jumpIncrement][j + jumpIncrement] == ' ')
             return true;
         break;
     case 5: // JFL
-        if ((Board[i + increment][j - increment] == enemy1 ||Board[i + increment][j + increment] == enemy2) && Board[i + 2][j - 2] == ' ')
+        if ((Board[i + increment][j - increment] == enemy1 ||Board[i + increment][j + increment] == enemy2) && Board[i + jumpIncrement][j - jumpIncrement] == ' ')
             return true;
         break;
     case 6: // JBL
@@ -303,7 +303,7 @@ bool Checkers::isValidJump(int i, int j, int direction)
             cout << "Not a King. Cannot move backwards.";
             return false;
         }
-        if ((Board[i - increment][j - increment] == enemy1 || Board[i - increment][j - increment] == enemy2 )&& Board[i - 2][j - 2] == ' ')
+        if ((Board[i - increment][j - increment] == enemy1 || Board[i - increment][j - increment] == enemy2 )&& Board[i - jumpIncrement][j - jumpIncrement] == ' ')
             return true;
         break;
     case 7: // JBR
@@ -312,7 +312,7 @@ bool Checkers::isValidJump(int i, int j, int direction)
             cout << "Not a King. Cannot move backwards.";
             return false;
         }
-        if ((Board[i - increment][j + increment] == enemy1 ||Board[i - increment][j + increment] == enemy2) && Board[i - 2][j + 2] == ' ')
+        if ((Board[i - increment][j + increment] == enemy1 ||Board[i - increment][j + increment] == enemy2) && Board[i - jumpIncrement][j + jumpIncrement] == ' ')
             return true;
         break;
     default:
