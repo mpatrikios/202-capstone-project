@@ -255,17 +255,18 @@ int main() {
                     game.Board[i][j] = game.makeKing(i, game.Board[i][j]); //check if piece is a king
                 } 
                 
-                else if (jumpAgain == 'N' || jumpAgain == 'n'){ //if they don't want to jump again
+                else if (jumpAgain == 'N' || jumpAgain == 'n') //if they don't want to jump again
+                { 
                     game.incrementCounter(); //increment the counter
                 } 
             }
         }
         game.incrementCounter();
 
-        if (game.checkWinner()) {
+        if (game.checkWinner()) 
+        {
             game.checkBoard();
-            cout << "Player " << (game.getCounter() % 2 == 0 ? 1 : 2) << " wins!" << endl;
-            cout << " Thanks for playing!" << endl;
+            cout << endl << "Player 1 had " << game.getScore1() << " points and Player 2 had " << game.getScore2() << " points." << endl;
             break;
         }
     }

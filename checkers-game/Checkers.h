@@ -22,10 +22,12 @@ public:
   void movePiece(int &i, int &j, int direction); // move a piece
   void jump(int &i, int &j, int direction); // jump a piece
   bool checkWinner(); // check if there is a winner
-  bool checkBoard(); // check the winner if 'Q' is inputted
+  void checkBoard(); // check the winner if 'Q' is inputted
   char makeKing(int i, char peice); // make a piece a king
   bool isValidMove(int i, int j, int direction); // check if a move is valid
   bool isValidJump(int i, int j, int direction); // check if a jump is valid
+  int getScore1();
+  int getScore2();
   void incrementCounter();
 };
 #endif
