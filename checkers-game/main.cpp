@@ -78,6 +78,7 @@ int convertString(string inputDirection, int counter) {
 int main() {
     int i, j, direction; //i: row, j: column, direction: direction of move
     string inputDirection; //User input
+    char quit;
     Checkers game; //Create Checkers object
     vector <int> jumpAgainOptions; //Available jump options after jump
     
@@ -106,11 +107,17 @@ int main() {
         cout << "Player " << (game.getCounter() % 2 == 0 ? 1 : 2) << "'s turn. Which piece would you like to move [row column direction] ('Q' to quit): ";
 
         // Read in i, j, and inputDirection
-        cin >> i >> j >> inputDirection;
-        // cout << i << j << inputDirection << endl;
+        if (cin >> quit && quit == 'Q') {
+            i = -1;
+        } else {
+            cin >> i >> j >> inputDirection;
+        }
+        // cin >> i >> j >> inputDirection;
+        // // cout << i << j << inputDirection << endl;
 
         if (i == -1) { // Check for quit option
             game.checkBoard();
+            cout << endl << "Player 1 had " << game.getScore1() << " points and Player 2 had " << game.getScore2() << " points." << endl;
             cout << " Thanks for playing!" << endl;
             break;
         }
@@ -166,7 +173,7 @@ int main() {
             if(game.Board[i][j] == 'X' || game.Board[i][j] == 'O'){
                 loopEnd = 8;
             }
-
+            cout << "i: " << i << " j: " << j << " direction: " << direction << " loopEnd: " << loopEnd << endl;
             //check which jumps are available and adds them to list    
             for (int d = 4; d < loopEnd; d++){ 
                 //If jump is valid then add to vector

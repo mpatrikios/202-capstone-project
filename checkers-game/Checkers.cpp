@@ -66,6 +66,7 @@ Checkers::Checkers()
 }
 void Checkers::printBoard()
 {
+    cout << "             X side" << endl;
     cout << "   0   1   2   3   4   5   6   7" << endl; // Print column indices
 
     for (int i = 0; i < 8; i++) {
@@ -94,6 +95,7 @@ void Checkers::printBoard()
             cout << endl;
         }
     }
+    cout << "             O side";
 }
 
 
@@ -188,11 +190,11 @@ void Checkers::checkBoard()
     {
         cout << "Tie Game!";
     }
-    if (score1 > score2 )
+    else if (score1 > score2 )
     {
         cout << "Player 1 wins!";
     }
-    else 
+    else if (score2 > score1) 
         cout << "Player 2 wins!";
 }
 
