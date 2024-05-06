@@ -181,7 +181,7 @@ int main() {
             //if there are options and X is playing
             if (jumpAgainOptions.size() != 0){    
                 game.printBoard(); //print the board 
-                cout << "Would you like to jump again? (Y/N): ";
+                cout << endl << "Would you like to jump again? (Y/N): ";
                 char jumpAgain = 'a';
             
                 //Take input from user
