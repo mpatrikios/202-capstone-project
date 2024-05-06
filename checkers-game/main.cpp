@@ -118,7 +118,7 @@ int main() {
         if (i == -1) { // Check for quit option
             game.checkBoard();
             cout << endl << "Player 1 had " << game.getScore1() << " points and Player 2 had " << game.getScore2() << " points." << endl;
-            cout << " Thanks for playing!" << endl;
+            cout << "Thanks for playing!" << endl;
             break;
         }
 
