@@ -102,7 +102,7 @@ int main() {
         cout << endl;
         game.printBoard();
         cout  << endl;
-        cout << "Player " << (game.getCounter() % 2 == 0 ? 1 : 2) << "'s turn. Which piece would you like to move [row column direction] ('Q' to quit): ";
+        cout << "Player " << (game.getCounter() % 2 == 0 ? 1 : 2) << "'s turn. Which piece would you like to move [row column direction] (-1 to quit): ";
 
         // Read in i, j, and inputDirection
         
@@ -169,7 +169,6 @@ int main() {
             if(game.Board[i][j] == 'X' || game.Board[i][j] == 'O'){
                 loopEnd = 8;
             }
-            cout << "i: " << i << " j: " << j << " direction: " << direction << " loopEnd: " << loopEnd << endl;
             //check which jumps are available and adds them to list    
             for (int d = 4; d < loopEnd; d++){ 
                 //If jump is valid then add to vector

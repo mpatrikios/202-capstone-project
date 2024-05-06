@@ -277,7 +277,7 @@ bool Checkers::isValidMove(int i, int j, int direction)
         {
             return false;
         }
-        if (Board[i][j] != 'X' || 'O')
+        if (Board[i][j] != 'X' && Board[i][j] != 'O')
         {
             cout << "Not a King. Cannot move backwards.";
             return false;
@@ -291,7 +291,7 @@ bool Checkers::isValidMove(int i, int j, int direction)
         {
             return false;
         }
-        if (Board[i][j] != 'X' || 'O')
+        if (Board[i][j] != 'X' && Board[i][j] != 'O')
         {
             cout << "Not a King. Cannot move backwards.";
             return false;
@@ -349,7 +349,7 @@ bool Checkers::isValidJump(int i, int j, int direction)
         break;
 
     case 6: // JBL
-        if (Board[i][j] != 'X' || Board[i][j] != 'O')
+        if (Board[i][j] != 'X' && Board[i][j] != 'O')
         {
             cout << "Not a King. Cannot move backwards.";
             return false;
@@ -364,7 +364,7 @@ bool Checkers::isValidJump(int i, int j, int direction)
         break;
 
     case 7: // JBR
-        if (Board[i][j] != 'X' || Board[i][j] != 'O')
+        if (Board[i][j] != 'X' && Board[i][j] != 'O')
         {
             cout << "Not a King. Cannot move backwards.";
             return false;
