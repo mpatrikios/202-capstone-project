@@ -1,56 +1,5 @@
-# 202-capstone-project
+This is a checkers game that uses a 2-d array. Run in VScode (not on hydra) with command "g++ -std=c++11 -o checkers Checkers.cpp main.cpp" and "./checkers". Input is the row/column of the peice you want to move and the direction to move given by the key. The X/O side are labeled because once you king a peice, you will enter a "backwards" command to move towards your side and "forward" command to move towards the enemy side. If a double jump is available, you will be prompted to jump again if you wish. 
 
-** directions for board :
-FR - front right (0)
-FL - front left  (1)
-BL - back left   (2)
-BR - back right  (3)
-JFR - jump front right (0)
-JFL - jump front left (1)
-JBL - jump back left (2)
-JBR - jump back right (3)
-
-
-void printBoard(); - prints checkers board 
-
-void movePiece(int i, int j, int direction); int i/j are the coordiantes of the current peice being moved. bool isRight tells if the peice is moving to the right or left
-
-void capturePeice(int i, int j, int direction); - checks if a peice is being captured with this move (ie. if the position they are moving to has the other players peice, remove that peice from the board, increase current players score, and move current peice to the space after the captured peice. If there is an opportunity to double or triple jump, prompt the current player to do so or not)
-
-bool checkWinner(); - compares scores after every jump, if one player's score reaches 12 (total peices per player) that means they won and the game ends
-
-bool checkBoard(char Board); - option to quit game early ("Q"). Compare two scores and determine winner.
-
-void makeKing(int i, int j, char Board); - if a player reaches the opposite end of the board. make their peice a capital letter ( x -> X or o -> O) to indicate king. this will now allow the player to move in all directions
-
-bool isValidMove(int i, int j, int direction)- checks if the move is on the board and valid
-
-bool isValidJump(int i, int j, int direction)- checks if jump is valid (ie. on the board, not jumping their own peice, only moving backwards if king)
-
-
-PROS AND CONS TO USING OOP
-pros:
-- easy to call functions within each other (ie. checking if valid within the capture peice and move peice functions)
-- cleaner and easy to understand by separating out the functions
-
-cons:
-- for a simple board game, using OOP could be harder than hard coding the game in main
-- (not many, OOP is lit)
-
-USEFUL DATA STRUCTURES:
-- 2-D array is the best option because we are not adding or deleting elements (ie. changing the size/memory allocation), simply switching the char at certain coordinates
-- a map could also be used becuase it is essentially a 2d array
-
-TEST CASES/RUBRIC:
-- when a peice is captured, is the space replaced with ' ' +1
-- when a peice reaches end of the opposite board, is the character capatilized +1
-- prompt for a double/triple jump if it is a possibility +1
-- correct winner when 'Q' is inputed and when game ends +1
-- board is printed with correct formating +1
-- board updates correctly after every move +1
-- checks if inputed move is valid, reprompts player if invalid move +1
-- only Kings can move backwards +1
-  
-
-
+Time Log:
+https://docs.google.com/document/d/1ZFM4zr0siOPO5htP1kcxsIfaFMH7i4XSMSzUfLedKmU/edit
 
