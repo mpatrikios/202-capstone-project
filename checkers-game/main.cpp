@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-//are we asking if they want to jump or just jumping for them?
+
 
 using namespace std;
 
@@ -76,7 +76,7 @@ int convertString(string inputDirection, int counter) {
 
 
 int main() {
-    int i, j, direction; //i: row, j: column, direction: direction of move
+    int i=0, j=0, direction=0; //i: row, j: column, direction: direction of move
     string inputDirection; //User input
     char quit;
     Checkers game; //Create Checkers object
@@ -94,12 +94,10 @@ int main() {
     cout << "JFL - jump front left" << endl;
     cout << "JBL - jump back left" << endl;
     cout << "JBR - jump back right" << endl;
-    cout << "Player 1 will be X's and Player 2 will be O's. Enter 'Q' to quit the game." << endl;
+    cout << "Player 1 will be X's and Player 2 will be O's. Enter -1 to quit the game." << endl;
     
     //Game loop
     while (!game.checkWinner()) {
-        i = -1; //If i is -1 at the end, the user wants to quit
-        
         //Print the board and prompt the user for input
         cout << endl;
         game.printBoard();
@@ -107,20 +105,18 @@ int main() {
         cout << "Player " << (game.getCounter() % 2 == 0 ? 1 : 2) << "'s turn. Which piece would you like to move [row column direction] ('Q' to quit): ";
 
         // Read in i, j, and inputDirection
-        if (cin >> quit && quit == 'Q') {
-            i = -1;
-        } else {
-            cin >> i >> j >> inputDirection;
-        }
-        // cin >> i >> j >> inputDirection;
-        // // cout << i << j << inputDirection << endl;
+        
 
+            cin >> i;
+        
         if (i == -1) { // Check for quit option
             game.checkBoard();
             cout << endl << "Player 1 had " << game.getScore1() << " points and Player 2 had " << game.getScore2() << " points." << endl;
             cout << "Thanks for playing!" << endl;
             break;
         }
+        cin >> j >> inputDirection;
+        
 
         // Convert input direction to integer    
         direction = convertString(inputDirection, game.getCounter());
@@ -278,4 +274,4 @@ int main() {
         }
     }
     return 0;
-}
+} 

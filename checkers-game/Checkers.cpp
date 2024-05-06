@@ -383,6 +383,7 @@ bool Checkers::isValidJump(int i, int j, int direction)
         return false;
         break;
     }
+    return false;
 }
 
 // Validate user input for piece coordinates and direction
