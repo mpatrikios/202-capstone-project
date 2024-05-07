@@ -101,10 +101,10 @@ void Checkers::printBoard()
 
 void Checkers::movePiece(int &i, int &j, int direction)
 {
-    char peice = Board[i][j];
-    Board[i][j] = ' ';
-    if (counter % 2 == 0)  increment = 1;
-    else  increment = -1;
+    char peice = Board[i][j]; // save the peice
+    Board[i][j] = ' '; // remove the peice from the board
+    if (counter % 2 == 0)  increment = 1; // player 1
+    else  increment = -1; // player 2
         
     switch (direction)
     {
@@ -136,8 +136,12 @@ void Checkers::movePiece(int &i, int &j, int direction)
 
 void Checkers::jump(int &i, int &j, int direction)
 {
+    if (Board[i][j] == 'X' || Board[i][j] == 'x')  score1++; //add points when player jumps a peice
+    else score2++;
+    
     char peice = Board[i][j];
     Board[i][j] = ' ';
+
     if (counter % 2 == 0)
     {
         increment = 1;
@@ -148,8 +152,7 @@ void Checkers::jump(int &i, int &j, int direction)
         increment = -1;
         jumpIncrement = -2;
     }
-    if (Board[i][j] == 'X' || Board[i][j] == 'x')  score1++;
-    else score2++;
+
 
     switch (direction)
     {
@@ -185,7 +188,7 @@ void Checkers::jump(int &i, int &j, int direction)
 }
 
 
-void Checkers::checkBoard()
+void Checkers::checkBoard() //if player quits before game is over check board for winner
 {
     if (score1 == score2)
     {
@@ -199,7 +202,7 @@ void Checkers::checkBoard()
         cout << "Player 2 wins!";
 }
 
-bool Checkers::checkWinner()
+bool Checkers::checkWinner() //check if there is a winner after every move
 {
     if (score1 == 12 && score2 == 12)
     {
@@ -219,7 +222,7 @@ bool Checkers::checkWinner()
     return false;
     
 }
-char Checkers::makeKing(int i, char peice)
+char Checkers::makeKing(int i, char peice) //make a peice a king if in the correct row
 {
     char newPeice;
     if (peice == 'x' && i == 7)
@@ -237,11 +240,11 @@ char Checkers::makeKing(int i, char peice)
     return newPeice;
 }
 
-bool Checkers::isValidMove(int i, int j, int direction)
+bool Checkers::isValidMove(int i, int j, int direction) //make sure move is on the board and the spot is open
 {
     //cant't jump their own peices 
     char enemy1, enemy2;
-    if (counter % 2 == 0)
+    if (Board[i][j] == 'X' || Board[i][j] == 'x')
     {
         enemy1 = 'o';
         enemy2 = 'O';
@@ -310,20 +313,20 @@ bool Checkers::isValidMove(int i, int j, int direction)
  return false;
 }
 
-bool Checkers::isValidJump(int i, int j, int direction)
+bool Checkers::isValidJump(int i, int j, int direction) //check if jump is on the board, make sure not jumping own peice
 {
     char enemy1;
     char enemy2;
     // can't jump their own peice and different increments for x and o since they are moving different directions
-    if (counter % 2 == 0)
-    { cout << getCounter();
+    if (Board[i][j] == 'X' || Board[i][j] == 'x')
+    { 
         increment = 1;
         jumpIncrement = 2;
         enemy1 = 'o';
         enemy2 = 'O';
     }
     else
-    { cout << getCounter();
+    {
         increment = -1;
         jumpIncrement = -2;
         enemy1 = 'x';
@@ -390,7 +393,7 @@ bool Checkers::isValidJump(int i, int j, int direction)
 }
 
 // Validate user input for piece coordinates and direction
-bool Checkers::validateInput(int i, int j, int direction) {
+bool Checkers::validateInput(int i, int j, int direction) { 
     // Check if piece coordinates are within the board boundaries
     if (i < 0 || i >= 8 || j < 0 || j >= 8)
     {
@@ -414,7 +417,7 @@ bool Checkers::validateInput(int i, int j, int direction) {
     return true; // Input is valid
 }
 
-int Checkers::getScore1()
+int Checkers::getScore1() 
 {
     return score1;
 }

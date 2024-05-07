@@ -105,9 +105,7 @@ int main() {
         cout << "Player " << (game.getCounter() % 2 == 0 ? 1 : 2) << "'s turn. Which piece would you like to move [row column direction] (-1 to quit): ";
 
         // Read in i, j, and inputDirection
-        
-
-            cin >> i;
+        cin >> i; //read in just i first to see if they want to quit
         
         if (i == -1) { // Check for quit option
             game.checkBoard();
@@ -117,7 +115,6 @@ int main() {
         }
         cin >> j >> inputDirection;
         
-
         // Convert input direction to integer    
         direction = convertString(inputDirection, game.getCounter());
     
@@ -169,7 +166,8 @@ int main() {
             if(game.Board[i][j] == 'X' || game.Board[i][j] == 'O'){
                 loopEnd = 8;
             }
-            //check which jumps are available and adds them to list    
+            //check which jumps are available and adds them to list 
+            jumpAgainOptions.clear(); //clear the vector   
             for (int d = 4; d < loopEnd; d++){ 
                 //If jump is valid then add to vector
                 if(game.isValidJump(i, j, d)){
@@ -182,7 +180,7 @@ int main() {
             if (jumpAgainOptions.size() != 0){    
                 game.printBoard(); //print the board 
                 cout << endl << "Would you like to jump again? (Y/N): ";
-                char jumpAgain = 'a';
+                char jumpAgain = 'a'; //initialize jumpAgain
             
                 //Take input from user
                 cin >> jumpAgain;
@@ -198,7 +196,6 @@ int main() {
                     
                     cout << "Which direction would you like to jump? Your options are: ";
 
-                    cout << " i: " << i << " j: " << j << " direction: " << direction << endl;
                     for(int d = 0; d < jumpAgainOptions.size(); d++){        
                         if (jumpAgainOptions[d] == 4) {
                             cout << "JFR ";
@@ -230,8 +227,7 @@ int main() {
                 //options for O to jump again
                 if((jumpAgain == 'Y' || jumpAgain == 'y') && game.getCounter() % 2 == 1){ 
                     
-                    cout << "Which direction would you like to jump? Your options are: ";
-                      cout << " i: " << i << " j: " << j << " direction: " << direction << endl; 
+                    cout << "Which direction would you like to jump? Your options are: "; 
                     for(int d = 0; d < jumpAgainOptions.size(); d++){        
                         if (jumpAgainOptions[d] == 5) {
                             cout << "JFR ";
@@ -265,14 +261,14 @@ int main() {
                 } 
             }
         }
-        game.incrementCounter();
 
-        if (game.checkWinner()) 
+        if (game.checkWinner())  //check if there is a winner after every game
         {
             game.checkBoard();
             cout << endl << "Player 1 had " << game.getScore1() << " points and Player 2 had " << game.getScore2() << " points." << endl;
             break;
-        }
+        } 
+        game.incrementCounter(); //increment game counter
     }
     return 0;
 } 
