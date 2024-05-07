@@ -217,7 +217,8 @@ int main() {
                     } 
                 
                     cout << endl << "Enter your choice: "; //ask for their choice
-
+                    
+                    inputDirection = " ";
                     //Take input and convert to direction
                     cin >> inputDirection;
                     direction = convertString(inputDirection, game.getCounter()); 

@@ -305,6 +305,7 @@ bool Checkers::isValidMove(int i, int j, int direction)
         return false;
         break;
     }
+    if (Board[i][j] == ' ') return false;
  return false;
 }
 
@@ -383,6 +384,7 @@ bool Checkers::isValidJump(int i, int j, int direction)
         return false;
         break;
     }
+    if (Board[i][j] == ' ') return false;
     return false;
 }
 
@@ -401,7 +403,10 @@ bool Checkers::validateInput(int i, int j, int direction) {
         cout << "Invalid direction. Please enter a direction given above" << endl;
         return false;
     }
-
+    if (Board[i][j] == ' ')
+    {
+        return false;
+    }
     // Additional validation if needed for specific game rules
     // For example, check if the piece at (i, j) belongs to the current player
 
