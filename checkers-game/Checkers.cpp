@@ -148,8 +148,9 @@ void Checkers::jump(int &i, int &j, int direction)
         increment = -1;
         jumpIncrement = -2;
     }
-    if (Board[i][j] == 'X')  score1++;
-        else score2++;
+    if (Board[i][j] == 'X' || Board[i][j] == 'x')  score1++;
+    else score2++;
+
     switch (direction)
     {
     case 4: // JFR
@@ -315,14 +316,14 @@ bool Checkers::isValidJump(int i, int j, int direction)
     char enemy2;
     // can't jump their own peice and different increments for x and o since they are moving different directions
     if (counter % 2 == 0)
-    {
+    { cout << getCounter();
         increment = 1;
         jumpIncrement = 2;
         enemy1 = 'o';
         enemy2 = 'O';
     }
     else
-    {
+    { cout << getCounter();
         increment = -1;
         jumpIncrement = -2;
         enemy1 = 'x';

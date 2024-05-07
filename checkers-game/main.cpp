@@ -197,7 +197,8 @@ int main() {
                 if((jumpAgain == 'Y' || jumpAgain == 'y') && game.getCounter() % 2 == 0){ 
                     
                     cout << "Which direction would you like to jump? Your options are: ";
-            
+
+                    cout << " i: " << i << " j: " << j << " direction: " << direction << endl;
                     for(int d = 0; d < jumpAgainOptions.size(); d++){        
                         if (jumpAgainOptions[d] == 4) {
                             cout << "JFR ";
@@ -230,7 +231,7 @@ int main() {
                 if((jumpAgain == 'Y' || jumpAgain == 'y') && game.getCounter() % 2 == 1){ 
                     
                     cout << "Which direction would you like to jump? Your options are: ";
-            
+                      cout << " i: " << i << " j: " << j << " direction: " << direction << endl; 
                     for(int d = 0; d < jumpAgainOptions.size(); d++){        
                         if (jumpAgainOptions[d] == 5) {
                             cout << "JFR ";
