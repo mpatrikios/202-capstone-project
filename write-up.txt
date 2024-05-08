@@ -1,0 +1,11 @@
+This project turned out to be more of a challenge than we initally thought.
+Creating the inital version went very well, we knew how we wanted to accomplish most t
+hings from the writeup in lab 8. We got the pieces moving around the board with ease, 
+but debugging the edge cases took some time. For example, when doing a double jump 
+everything was working fine, but upon trying a second double jump things didn't seem right.
+We realized this was because we weren't clearing the jumpAgainOptions vector, 
+and it was using values that were previously put in it. Another roadblock 
+we ran into was github not working/ not being able to compile on the Hydra Telsa machines.
+The proffessor said that it was fine to just show it working in person, so we decided not to 
+investigate the hydra tesla machines too much. After too nuch time trying to get github to 
+work on one computer, we decided to do the project together on one computer.

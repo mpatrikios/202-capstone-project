@@ -1,0 +1,36 @@
+Mia:
+May 1 = 4 hours
+Worked on main and printing board
+
+May 2 = 3 hours
+Forced on error checking functions for moves and jumps
+Also created function to move and jump peice
+
+May 3 = 3 hours
+Added double jump ability and fixed “Quit”
+
+May 6 = 6 hours
+Made king function
+Played games to test
+Added some more details to the board and printed winner
+Tested on hydra, played differently than on VSCode?
+Fixed annoying bounds and double jump problems
+Fixed point counting system
+
+
+Wyatt: 
+May 1 = 2 hours
+Tried to get github working
+
+May 2 = 3 hours
+Optimized code
+Added comments for readability
+Fixed formatting issues
+Bug fixing on error checking functions
+
+May 3 = 3 hours
+Added double jump
+Bug fixing
+
+May 6 = 3 hours
+Final bug fixing
